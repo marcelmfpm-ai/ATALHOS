@@ -31,16 +31,29 @@
     padding: calc(env(safe-area-inset-top) + 28px) 20px calc(env(safe-area-inset-bottom) + 40px);
     -webkit-font-smoothing: antialiased;
   }
-  header { text-align: center; margin-bottom: 28px; }
+  header {
+    text-align: center; margin-bottom: 28px;
+    max-width: 480px; margin-left: auto; margin-right: auto;
+    background: #000; border-radius: 22px; padding: 24px 20px;
+    box-shadow: 0 6px 18px rgba(0,0,0,.25);
+  }
   .logo {
     width: 56px; height: 56px; border-radius: 16px;
-    background: var(--accent); color: #fff;
+    background: #d4af37; color: #000;
     display: flex; align-items: center; justify-content: center;
     font-size: 28px; font-weight: 700; margin: 0 auto 14px;
-    box-shadow: 0 6px 18px rgba(47,72,120,.25);
+    box-shadow: 0 6px 18px rgba(212,175,55,.35);
   }
-  h1 { font-size: 22px; font-weight: 700; letter-spacing: -.3px; }
-  .sub { color: var(--muted); font-size: 14px; margin-top: 4px; }
+  h1 { font-size: 22px; font-weight: 700; letter-spacing: -.3px; color: #d4af37; }
+  .sub { color: #b8973f; font-size: 14px; margin-top: 4px; }
+  .header-actions { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; }
+  .header-btn {
+    display: flex; align-items: center; gap: 10px;
+    background: #1a1a1a; color: #d4af37; border: 1px solid #d4af37;
+    border-radius: 12px; padding: 10px 14px; font-size: 13px; font-weight: 600;
+    cursor: pointer; text-align: left;
+  }
+  .header-btn:active { background: #262626; }
   .groups { max-width: 480px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
   .group-header { display: flex; align-items: center; gap: 10px; margin: 0 4px 12px; }
   .dot { width: 12px; height: 12px; border-radius: 50%; flex: 0 0 auto; }
@@ -81,10 +94,10 @@
   .chev { color: #c4cad6; font-size: 20px; flex: 0 0 auto; }
   .actions { display: flex; gap: 6px; flex: 0 0 auto; }
   .iconbtn {
-    width: 36px; height: 36px; border-radius: 10px; border: none;
-    background: #eef1f6; color: var(--ink); font-size: 16px;
+    width: 32px; height: 32px; border-radius: 9px; border: none;
+    background: #eef1f6; color: var(--ink); font-size: 14px;
     display: flex; align-items: center; justify-content: center;
-    cursor: pointer;
+    cursor: pointer; flex: 0 0 auto;
   }
   .iconbtn:active { background: #dde2ea; }
   .wordrow { max-width: 480px; margin: 18px auto 0; display: flex; flex-direction: column; gap: 10px; }
@@ -100,9 +113,12 @@
 </head>
 <body>
   <header>
-    <div class="logo">M</div>
     <h1>Atalhos</h1>
-    <div class="sub">Marcel · acesso rápido</div>
+    <div class="header-actions">
+      <button class="header-btn" data-url="https://marcelmfpm-ai.github.io/ATALHOS/" onclick="copyLink(this)">📋 Copiar o link desta página</button>
+      <button class="header-btn" data-url="https://marcelmfpm-ai.github.io/ATALHOS/" data-title="Atalhos" onclick="shareWhatsApp(this)"><svg viewBox="0 0 448 512" width="16" height="16" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 224.1 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 110.8L0 480l117.7-30.9c32 17.5 68.1 26.7 105.7 26.7h.1c122.4 0 224.1-99.6 224.1-222 0-59.1-25.9-115.8-67.7-156.7zM224.1 438.5h-.1c-32.7 0-64.6-8.8-92.5-25.5l-6.6-3.9-69.8 18.3 18.6-68-4.3-7c-19.5-31-29.8-66.8-29.8-104 0-101.6 82.7-184.3 184.5-184.3 49.3 0 95.6 19.2 130.4 54 34.8 34.8 56.2 81.1 56.1 130.4 0 101.7-84.9 184.3-186.5 184.3zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.5-14.3 18-17.6 21.7-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.6-9.7-1.5-2.8-12.9-31-17.7-42.4-4.7-11.1-9.5-9.6-13-9.8-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.5 19-19.5 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 38 58 92.1 79 45.5 17.5 54.7 14 64.6 12.9 9.9-1.1 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.4-2.3-5.1-3.7-10.6-6.4z"/></svg> Compartilha link e QRCode</button>
+      <button class="header-btn" data-url="https://marcelmfpm-ai.github.io/ATALHOS/" onclick="copyQrToClipboard(this)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="6" height="6"/><rect x="15" y="3" width="6" height="6"/><rect x="3" y="15" width="6" height="6"/><rect x="15" y="15" width="2.5" height="2.5"/><rect x="18.5" y="18.5" width="2.5" height="2.5"/><rect x="15" y="20" width="2.5" height="1"/><rect x="20" y="15" width="1" height="2.5"/></svg> Copiar o QR Code desta página</button>
+    </div>
   </header>
 
   <main class="groups">
@@ -121,6 +137,7 @@
           <div class="actions">
             <button class="iconbtn" data-url="https://comforting-parfait-363a6e.netlify.app" data-title="Aula M2.2 — Eleitoral" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
             <button class="iconbtn" data-url="https://comforting-parfait-363a6e.netlify.app" data-title="Aula M2.2 — Eleitoral" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp"><svg viewBox="0 0 448 512" width="16" height="16" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 224.1 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 110.8L0 480l117.7-30.9c32 17.5 68.1 26.7 105.7 26.7h.1c122.4 0 224.1-99.6 224.1-222 0-59.1-25.9-115.8-67.7-156.7zM224.1 438.5h-.1c-32.7 0-64.6-8.8-92.5-25.5l-6.6-3.9-69.8 18.3 18.6-68-4.3-7c-19.5-31-29.8-66.8-29.8-104 0-101.6 82.7-184.3 184.5-184.3 49.3 0 95.6 19.2 130.4 54 34.8 34.8 56.2 81.1 56.1 130.4 0 101.7-84.9 184.3-186.5 184.3zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.5-14.3 18-17.6 21.7-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.6-9.7-1.5-2.8-12.9-31-17.7-42.4-4.7-11.1-9.5-9.6-13-9.8-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.5 19-19.5 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 38 58 92.1 79 45.5 17.5 54.7 14 64.6 12.9 9.9-1.1 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.4-2.3-5.1-3.7-10.6-6.4z"/></svg></button>
+            <button class="iconbtn" data-url="https://comforting-parfait-363a6e.netlify.app" onclick="copyQrToClipboard(this)" aria-label="Copiar QR Code"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="6" height="6"/><rect x="15" y="3" width="6" height="6"/><rect x="3" y="15" width="6" height="6"/><rect x="15" y="15" width="2.5" height="2.5"/><rect x="18.5" y="18.5" width="2.5" height="2.5"/><rect x="15" y="20" width="2.5" height="1"/><rect x="20" y="15" width="1" height="2.5"/></svg></button>
           </div>
         </div>
 
@@ -136,6 +153,7 @@
           <div class="actions">
             <button class="iconbtn" data-url="https://aula-m3-03-aeroporto.netlify.app" data-title="Aula M3.03 — Aeroporto" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
             <button class="iconbtn" data-url="https://aula-m3-03-aeroporto.netlify.app" data-title="Aula M3.03 — Aeroporto" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp"><svg viewBox="0 0 448 512" width="16" height="16" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 224.1 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 110.8L0 480l117.7-30.9c32 17.5 68.1 26.7 105.7 26.7h.1c122.4 0 224.1-99.6 224.1-222 0-59.1-25.9-115.8-67.7-156.7zM224.1 438.5h-.1c-32.7 0-64.6-8.8-92.5-25.5l-6.6-3.9-69.8 18.3 18.6-68-4.3-7c-19.5-31-29.8-66.8-29.8-104 0-101.6 82.7-184.3 184.5-184.3 49.3 0 95.6 19.2 130.4 54 34.8 34.8 56.2 81.1 56.1 130.4 0 101.7-84.9 184.3-186.5 184.3zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.5-14.3 18-17.6 21.7-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.6-9.7-1.5-2.8-12.9-31-17.7-42.4-4.7-11.1-9.5-9.6-13-9.8-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.5 19-19.5 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 38 58 92.1 79 45.5 17.5 54.7 14 64.6 12.9 9.9-1.1 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.4-2.3-5.1-3.7-10.6-6.4z"/></svg></button>
+            <button class="iconbtn" data-url="https://aula-m3-03-aeroporto.netlify.app" onclick="copyQrToClipboard(this)" aria-label="Copiar QR Code"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="6" height="6"/><rect x="15" y="3" width="6" height="6"/><rect x="3" y="15" width="6" height="6"/><rect x="15" y="15" width="2.5" height="2.5"/><rect x="18.5" y="18.5" width="2.5" height="2.5"/><rect x="15" y="20" width="2.5" height="1"/><rect x="20" y="15" width="1" height="2.5"/></svg></button>
           </div>
         </div>
       </div>
@@ -156,6 +174,7 @@
           <div class="actions">
             <button class="iconbtn" data-url="https://infobio-2d94d.web.app/consulta.html" data-title="Infobio — Consulta" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
             <button class="iconbtn" data-url="https://infobio-2d94d.web.app/consulta.html" data-title="Infobio — Consulta" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp"><svg viewBox="0 0 448 512" width="16" height="16" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 224.1 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 110.8L0 480l117.7-30.9c32 17.5 68.1 26.7 105.7 26.7h.1c122.4 0 224.1-99.6 224.1-222 0-59.1-25.9-115.8-67.7-156.7zM224.1 438.5h-.1c-32.7 0-64.6-8.8-92.5-25.5l-6.6-3.9-69.8 18.3 18.6-68-4.3-7c-19.5-31-29.8-66.8-29.8-104 0-101.6 82.7-184.3 184.5-184.3 49.3 0 95.6 19.2 130.4 54 34.8 34.8 56.2 81.1 56.1 130.4 0 101.7-84.9 184.3-186.5 184.3zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.5-14.3 18-17.6 21.7-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.6-9.7-1.5-2.8-12.9-31-17.7-42.4-4.7-11.1-9.5-9.6-13-9.8-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.5 19-19.5 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 38 58 92.1 79 45.5 17.5 54.7 14 64.6 12.9 9.9-1.1 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.4-2.3-5.1-3.7-10.6-6.4z"/></svg></button>
+            <button class="iconbtn" data-url="https://infobio-2d94d.web.app/consulta.html" onclick="copyQrToClipboard(this)" aria-label="Copiar QR Code"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="6" height="6"/><rect x="15" y="3" width="6" height="6"/><rect x="3" y="15" width="6" height="6"/><rect x="15" y="15" width="2.5" height="2.5"/><rect x="18.5" y="18.5" width="2.5" height="2.5"/><rect x="15" y="20" width="2.5" height="1"/><rect x="20" y="15" width="1" height="2.5"/></svg></button>
           </div>
         </div>
 
@@ -171,6 +190,7 @@
           <div class="actions">
             <button class="iconbtn" data-url="https://marcelmfpm-ai.github.io/CONSULTA_TREINO/" data-title="Nexo Treino - EPF" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
             <button class="iconbtn" data-url="https://marcelmfpm-ai.github.io/CONSULTA_TREINO/" data-title="Nexo Treino - EPF" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp"><svg viewBox="0 0 448 512" width="16" height="16" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 224.1 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 110.8L0 480l117.7-30.9c32 17.5 68.1 26.7 105.7 26.7h.1c122.4 0 224.1-99.6 224.1-222 0-59.1-25.9-115.8-67.7-156.7zM224.1 438.5h-.1c-32.7 0-64.6-8.8-92.5-25.5l-6.6-3.9-69.8 18.3 18.6-68-4.3-7c-19.5-31-29.8-66.8-29.8-104 0-101.6 82.7-184.3 184.5-184.3 49.3 0 95.6 19.2 130.4 54 34.8 34.8 56.2 81.1 56.1 130.4 0 101.7-84.9 184.3-186.5 184.3zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.5-14.3 18-17.6 21.7-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.6-9.7-1.5-2.8-12.9-31-17.7-42.4-4.7-11.1-9.5-9.6-13-9.8-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.5 19-19.5 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 38 58 92.1 79 45.5 17.5 54.7 14 64.6 12.9 9.9-1.1 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.4-2.3-5.1-3.7-10.6-6.4z"/></svg></button>
+            <button class="iconbtn" data-url="https://marcelmfpm-ai.github.io/CONSULTA_TREINO/" onclick="copyQrToClipboard(this)" aria-label="Copiar QR Code"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="6" height="6"/><rect x="15" y="3" width="6" height="6"/><rect x="3" y="15" width="6" height="6"/><rect x="15" y="15" width="2.5" height="2.5"/><rect x="18.5" y="18.5" width="2.5" height="2.5"/><rect x="15" y="20" width="2.5" height="1"/><rect x="20" y="15" width="1" height="2.5"/></svg></button>
           </div>
         </div>
 
@@ -186,6 +206,7 @@
           <div class="actions">
             <button class="iconbtn" data-url="https://consulta-treino-mitra.web.app/" data-title="Mitra — Consulta Treino" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
             <button class="iconbtn" data-url="https://consulta-treino-mitra.web.app/" data-title="Mitra — Consulta Treino" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp"><svg viewBox="0 0 448 512" width="16" height="16" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 224.1 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 110.8L0 480l117.7-30.9c32 17.5 68.1 26.7 105.7 26.7h.1c122.4 0 224.1-99.6 224.1-222 0-59.1-25.9-115.8-67.7-156.7zM224.1 438.5h-.1c-32.7 0-64.6-8.8-92.5-25.5l-6.6-3.9-69.8 18.3 18.6-68-4.3-7c-19.5-31-29.8-66.8-29.8-104 0-101.6 82.7-184.3 184.5-184.3 49.3 0 95.6 19.2 130.4 54 34.8 34.8 56.2 81.1 56.1 130.4 0 101.7-84.9 184.3-186.5 184.3zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.5-14.3 18-17.6 21.7-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.6-9.7-1.5-2.8-12.9-31-17.7-42.4-4.7-11.1-9.5-9.6-13-9.8-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.5 19-19.5 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 38 58 92.1 79 45.5 17.5 54.7 14 64.6 12.9 9.9-1.1 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.4-2.3-5.1-3.7-10.6-6.4z"/></svg></button>
+            <button class="iconbtn" data-url="https://consulta-treino-mitra.web.app/" onclick="copyQrToClipboard(this)" aria-label="Copiar QR Code"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="6" height="6"/><rect x="15" y="3" width="6" height="6"/><rect x="3" y="15" width="6" height="6"/><rect x="15" y="15" width="2.5" height="2.5"/><rect x="18.5" y="18.5" width="2.5" height="2.5"/><rect x="15" y="20" width="2.5" height="1"/><rect x="20" y="15" width="1" height="2.5"/></svg></button>
           </div>
         </div>
 
@@ -201,6 +222,7 @@
           <div class="actions">
             <button class="iconbtn" data-url="https://marcelmfpm-ai.github.io/CONSULTA_TREINO_DPF/" data-title="Nexo Treino — DPF" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
             <button class="iconbtn" data-url="https://marcelmfpm-ai.github.io/CONSULTA_TREINO_DPF/" data-title="Nexo Treino — DPF" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp"><svg viewBox="0 0 448 512" width="16" height="16" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 224.1 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 110.8L0 480l117.7-30.9c32 17.5 68.1 26.7 105.7 26.7h.1c122.4 0 224.1-99.6 224.1-222 0-59.1-25.9-115.8-67.7-156.7zM224.1 438.5h-.1c-32.7 0-64.6-8.8-92.5-25.5l-6.6-3.9-69.8 18.3 18.6-68-4.3-7c-19.5-31-29.8-66.8-29.8-104 0-101.6 82.7-184.3 184.5-184.3 49.3 0 95.6 19.2 130.4 54 34.8 34.8 56.2 81.1 56.1 130.4 0 101.7-84.9 184.3-186.5 184.3zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.5-14.3 18-17.6 21.7-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.6-9.7-1.5-2.8-12.9-31-17.7-42.4-4.7-11.1-9.5-9.6-13-9.8-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.5 19-19.5 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 38 58 92.1 79 45.5 17.5 54.7 14 64.6 12.9 9.9-1.1 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.4-2.3-5.1-3.7-10.6-6.4z"/></svg></button>
+            <button class="iconbtn" data-url="https://marcelmfpm-ai.github.io/CONSULTA_TREINO_DPF/" onclick="copyQrToClipboard(this)" aria-label="Copiar QR Code"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="6" height="6"/><rect x="15" y="3" width="6" height="6"/><rect x="3" y="15" width="6" height="6"/><rect x="15" y="15" width="2.5" height="2.5"/><rect x="18.5" y="18.5" width="2.5" height="2.5"/><rect x="15" y="20" width="2.5" height="1"/><rect x="20" y="15" width="1" height="2.5"/></svg></button>
           </div>
         </div>
 
@@ -217,6 +239,23 @@
           <div class="actions">
             <button class="iconbtn" data-url="https://epol-treino.web.app/" data-title="EPOL Treino" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
             <button class="iconbtn" data-url="https://epol-treino.web.app/" data-title="EPOL Treino" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp"><svg viewBox="0 0 448 512" width="16" height="16" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 224.1 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 110.8L0 480l117.7-30.9c32 17.5 68.1 26.7 105.7 26.7h.1c122.4 0 224.1-99.6 224.1-222 0-59.1-25.9-115.8-67.7-156.7zM224.1 438.5h-.1c-32.7 0-64.6-8.8-92.5-25.5l-6.6-3.9-69.8 18.3 18.6-68-4.3-7c-19.5-31-29.8-66.8-29.8-104 0-101.6 82.7-184.3 184.5-184.3 49.3 0 95.6 19.2 130.4 54 34.8 34.8 56.2 81.1 56.1 130.4 0 101.7-84.9 184.3-186.5 184.3zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.5-14.3 18-17.6 21.7-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.6-9.7-1.5-2.8-12.9-31-17.7-42.4-4.7-11.1-9.5-9.6-13-9.8-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.5 19-19.5 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 38 58 92.1 79 45.5 17.5 54.7 14 64.6 12.9 9.9-1.1 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.4-2.3-5.1-3.7-10.6-6.4z"/></svg></button>
+            <button class="iconbtn" data-url="https://epol-treino.web.app/" onclick="copyQrToClipboard(this)" aria-label="Copiar QR Code"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="6" height="6"/><rect x="15" y="3" width="6" height="6"/><rect x="3" y="15" width="6" height="6"/><rect x="15" y="15" width="2.5" height="2.5"/><rect x="18.5" y="18.5" width="2.5" height="2.5"/><rect x="15" y="20" width="2.5" height="1"/><rect x="20" y="15" width="1" height="2.5"/></svg></button>
+          </div>
+        </div>
+
+        <div class="card">
+          <a class="cardlink" href="https://marcelmfpm-ai.github.io/pje-treino/pagina2.html" target="_blank" rel="noopener">
+            <div class="ic" style="background:#1e3a8a">⚖️<span class="ic-badge">🔍</span></div>
+            <div class="meta">
+              <div class="t">PJE Treino</div>
+              <div class="u">marcelmfpm-ai.github.io/pje-treino</div>
+            </div>
+            <div class="chev">›</div>
+          </a>
+          <div class="actions">
+            <button class="iconbtn" data-url="https://marcelmfpm-ai.github.io/pje-treino/pagina2.html" data-title="PJE Treino" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
+            <button class="iconbtn" data-url="https://marcelmfpm-ai.github.io/pje-treino/pagina2.html" data-title="PJE Treino" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp"><svg viewBox="0 0 448 512" width="16" height="16" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 224.1 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 110.8L0 480l117.7-30.9c32 17.5 68.1 26.7 105.7 26.7h.1c122.4 0 224.1-99.6 224.1-222 0-59.1-25.9-115.8-67.7-156.7zM224.1 438.5h-.1c-32.7 0-64.6-8.8-92.5-25.5l-6.6-3.9-69.8 18.3 18.6-68-4.3-7c-19.5-31-29.8-66.8-29.8-104 0-101.6 82.7-184.3 184.5-184.3 49.3 0 95.6 19.2 130.4 54 34.8 34.8 56.2 81.1 56.1 130.4 0 101.7-84.9 184.3-186.5 184.3zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.5-14.3 18-17.6 21.7-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.6-9.7-1.5-2.8-12.9-31-17.7-42.4-4.7-11.1-9.5-9.6-13-9.8-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.5 19-19.5 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 38 58 92.1 79 45.5 17.5 54.7 14 64.6 12.9 9.9-1.1 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.4-2.3-5.1-3.7-10.6-6.4z"/></svg></button>
+            <button class="iconbtn" data-url="https://marcelmfpm-ai.github.io/pje-treino/pagina2.html" onclick="copyQrToClipboard(this)" aria-label="Copiar QR Code"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="6" height="6"/><rect x="15" y="3" width="6" height="6"/><rect x="3" y="15" width="6" height="6"/><rect x="15" y="15" width="2.5" height="2.5"/><rect x="18.5" y="18.5" width="2.5" height="2.5"/><rect x="15" y="20" width="2.5" height="1"/><rect x="20" y="15" width="1" height="2.5"/></svg></button>
           </div>
         </div>
       </div>
@@ -237,6 +276,7 @@
           <div class="actions">
             <button class="iconbtn" data-url="https://cfp2-coordenacao-apc.web.app/" data-title="Coordenação APC — CFP2" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
             <button class="iconbtn" data-url="https://cfp2-coordenacao-apc.web.app/" data-title="Coordenação APC — CFP2" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp"><svg viewBox="0 0 448 512" width="16" height="16" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 224.1 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 110.8L0 480l117.7-30.9c32 17.5 68.1 26.7 105.7 26.7h.1c122.4 0 224.1-99.6 224.1-222 0-59.1-25.9-115.8-67.7-156.7zM224.1 438.5h-.1c-32.7 0-64.6-8.8-92.5-25.5l-6.6-3.9-69.8 18.3 18.6-68-4.3-7c-19.5-31-29.8-66.8-29.8-104 0-101.6 82.7-184.3 184.5-184.3 49.3 0 95.6 19.2 130.4 54 34.8 34.8 56.2 81.1 56.1 130.4 0 101.7-84.9 184.3-186.5 184.3zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.5-14.3 18-17.6 21.7-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.6-9.7-1.5-2.8-12.9-31-17.7-42.4-4.7-11.1-9.5-9.6-13-9.8-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.5 19-19.5 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 38 58 92.1 79 45.5 17.5 54.7 14 64.6 12.9 9.9-1.1 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.4-2.3-5.1-3.7-10.6-6.4z"/></svg></button>
+            <button class="iconbtn" data-url="https://cfp2-coordenacao-apc.web.app/" onclick="copyQrToClipboard(this)" aria-label="Copiar QR Code"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="6" height="6"/><rect x="15" y="3" width="6" height="6"/><rect x="3" y="15" width="6" height="6"/><rect x="15" y="15" width="2.5" height="2.5"/><rect x="18.5" y="18.5" width="2.5" height="2.5"/><rect x="15" y="20" width="2.5" height="1"/><rect x="20" y="15" width="1" height="2.5"/></svg></button>
           </div>
         </div>
 
@@ -252,6 +292,7 @@
           <div class="actions">
             <button class="iconbtn" data-url="https://grade.simulex.com.br/consulta" data-title="Grade Simulex" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
             <button class="iconbtn" data-url="https://grade.simulex.com.br/consulta" data-title="Grade Simulex" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp"><svg viewBox="0 0 448 512" width="16" height="16" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 224.1 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 110.8L0 480l117.7-30.9c32 17.5 68.1 26.7 105.7 26.7h.1c122.4 0 224.1-99.6 224.1-222 0-59.1-25.9-115.8-67.7-156.7zM224.1 438.5h-.1c-32.7 0-64.6-8.8-92.5-25.5l-6.6-3.9-69.8 18.3 18.6-68-4.3-7c-19.5-31-29.8-66.8-29.8-104 0-101.6 82.7-184.3 184.5-184.3 49.3 0 95.6 19.2 130.4 54 34.8 34.8 56.2 81.1 56.1 130.4 0 101.7-84.9 184.3-186.5 184.3zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.5-14.3 18-17.6 21.7-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.6-9.7-1.5-2.8-12.9-31-17.7-42.4-4.7-11.1-9.5-9.6-13-9.8-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.5 19-19.5 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 38 58 92.1 79 45.5 17.5 54.7 14 64.6 12.9 9.9-1.1 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.4-2.3-5.1-3.7-10.6-6.4z"/></svg></button>
+            <button class="iconbtn" data-url="https://grade.simulex.com.br/consulta" onclick="copyQrToClipboard(this)" aria-label="Copiar QR Code"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="6" height="6"/><rect x="15" y="3" width="6" height="6"/><rect x="3" y="15" width="6" height="6"/><rect x="15" y="15" width="2.5" height="2.5"/><rect x="18.5" y="18.5" width="2.5" height="2.5"/><rect x="15" y="20" width="2.5" height="1"/><rect x="20" y="15" width="1" height="2.5"/></svg></button>
           </div>
         </div>
 
@@ -267,6 +308,23 @@
           <div class="actions">
             <button class="iconbtn" data-url="https://marcelmfpm-ai.github.io/GRADE_PRELIMINAR/" data-title="Grade Preliminar" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
             <button class="iconbtn" data-url="https://marcelmfpm-ai.github.io/GRADE_PRELIMINAR/" data-title="Grade Preliminar" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp"><svg viewBox="0 0 448 512" width="16" height="16" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 224.1 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 110.8L0 480l117.7-30.9c32 17.5 68.1 26.7 105.7 26.7h.1c122.4 0 224.1-99.6 224.1-222 0-59.1-25.9-115.8-67.7-156.7zM224.1 438.5h-.1c-32.7 0-64.6-8.8-92.5-25.5l-6.6-3.9-69.8 18.3 18.6-68-4.3-7c-19.5-31-29.8-66.8-29.8-104 0-101.6 82.7-184.3 184.5-184.3 49.3 0 95.6 19.2 130.4 54 34.8 34.8 56.2 81.1 56.1 130.4 0 101.7-84.9 184.3-186.5 184.3zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.5-14.3 18-17.6 21.7-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.6-9.7-1.5-2.8-12.9-31-17.7-42.4-4.7-11.1-9.5-9.6-13-9.8-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.5 19-19.5 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 38 58 92.1 79 45.5 17.5 54.7 14 64.6 12.9 9.9-1.1 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.4-2.3-5.1-3.7-10.6-6.4z"/></svg></button>
+            <button class="iconbtn" data-url="https://marcelmfpm-ai.github.io/GRADE_PRELIMINAR/" onclick="copyQrToClipboard(this)" aria-label="Copiar QR Code"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="6" height="6"/><rect x="15" y="3" width="6" height="6"/><rect x="3" y="15" width="6" height="6"/><rect x="15" y="15" width="2.5" height="2.5"/><rect x="18.5" y="18.5" width="2.5" height="2.5"/><rect x="15" y="20" width="2.5" height="1"/><rect x="20" y="15" width="1" height="2.5"/></svg></button>
+          </div>
+        </div>
+
+        <div class="card">
+          <a class="cardlink" href="https://auxiliares-apc.web.app/index.html#grade-publica" target="_blank" rel="noopener">
+            <div class="ic" style="background:#0891b2">📅</div>
+            <div class="meta">
+              <div class="t">Grade Auxiliares DEEC</div>
+              <div class="u">auxiliares-apc.web.app</div>
+            </div>
+            <div class="chev">›</div>
+          </a>
+          <div class="actions">
+            <button class="iconbtn" data-url="https://auxiliares-apc.web.app/index.html#grade-publica" data-title="Grade Auxiliares DEEC" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
+            <button class="iconbtn" data-url="https://auxiliares-apc.web.app/index.html#grade-publica" data-title="Grade Auxiliares DEEC" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp"><svg viewBox="0 0 448 512" width="16" height="16" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 224.1 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 110.8L0 480l117.7-30.9c32 17.5 68.1 26.7 105.7 26.7h.1c122.4 0 224.1-99.6 224.1-222 0-59.1-25.9-115.8-67.7-156.7zM224.1 438.5h-.1c-32.7 0-64.6-8.8-92.5-25.5l-6.6-3.9-69.8 18.3 18.6-68-4.3-7c-19.5-31-29.8-66.8-29.8-104 0-101.6 82.7-184.3 184.5-184.3 49.3 0 95.6 19.2 130.4 54 34.8 34.8 56.2 81.1 56.1 130.4 0 101.7-84.9 184.3-186.5 184.3zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.5-14.3 18-17.6 21.7-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.6-9.7-1.5-2.8-12.9-31-17.7-42.4-4.7-11.1-9.5-9.6-13-9.8-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.5 19-19.5 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 38 58 92.1 79 45.5 17.5 54.7 14 64.6 12.9 9.9-1.1 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.4-2.3-5.1-3.7-10.6-6.4z"/></svg></button>
+            <button class="iconbtn" data-url="https://auxiliares-apc.web.app/index.html#grade-publica" onclick="copyQrToClipboard(this)" aria-label="Copiar QR Code"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="6" height="6"/><rect x="15" y="3" width="6" height="6"/><rect x="3" y="15" width="6" height="6"/><rect x="15" y="15" width="2.5" height="2.5"/><rect x="18.5" y="18.5" width="2.5" height="2.5"/><rect x="15" y="20" width="2.5" height="1"/><rect x="20" y="15" width="1" height="2.5"/></svg></button>
           </div>
         </div>
       </div>
@@ -287,6 +345,7 @@
           <div class="actions">
             <button class="iconbtn" data-url="https://cfp2026anp.github.io/PAINEL-DE-MATERIAIS-APC/" data-title="Estudo Material do Professor" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
             <button class="iconbtn" data-url="https://cfp2026anp.github.io/PAINEL-DE-MATERIAIS-APC/" data-title="Estudo Material do Professor" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp"><svg viewBox="0 0 448 512" width="16" height="16" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 224.1 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 110.8L0 480l117.7-30.9c32 17.5 68.1 26.7 105.7 26.7h.1c122.4 0 224.1-99.6 224.1-222 0-59.1-25.9-115.8-67.7-156.7zM224.1 438.5h-.1c-32.7 0-64.6-8.8-92.5-25.5l-6.6-3.9-69.8 18.3 18.6-68-4.3-7c-19.5-31-29.8-66.8-29.8-104 0-101.6 82.7-184.3 184.5-184.3 49.3 0 95.6 19.2 130.4 54 34.8 34.8 56.2 81.1 56.1 130.4 0 101.7-84.9 184.3-186.5 184.3zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.5-14.3 18-17.6 21.7-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.6-9.7-1.5-2.8-12.9-31-17.7-42.4-4.7-11.1-9.5-9.6-13-9.8-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.5 19-19.5 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 38 58 92.1 79 45.5 17.5 54.7 14 64.6 12.9 9.9-1.1 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.4-2.3-5.1-3.7-10.6-6.4z"/></svg></button>
+            <button class="iconbtn" data-url="https://cfp2026anp.github.io/PAINEL-DE-MATERIAIS-APC/" onclick="copyQrToClipboard(this)" aria-label="Copiar QR Code"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="6" height="6"/><rect x="15" y="3" width="6" height="6"/><rect x="3" y="15" width="6" height="6"/><rect x="15" y="15" width="2.5" height="2.5"/><rect x="18.5" y="18.5" width="2.5" height="2.5"/><rect x="15" y="20" width="2.5" height="1"/><rect x="20" y="15" width="1" height="2.5"/></svg></button>
           </div>
         </div>
       </div>
@@ -320,11 +379,42 @@
       }
     }
 
-    function shareWhatsApp(btn) {
+    async function shareWhatsApp(btn) {
       const url = btn.dataset.url;
       const title = btn.dataset.title;
-      const text = encodeURIComponent(title + ': ' + url);
-      window.open('https://wa.me/?text=' + text, '_blank');
+      const text = title + ': ' + url;
+      try {
+        const qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' + encodeURIComponent(url);
+        const res = await fetch(qrUrl);
+        const blob = await res.blob();
+        const file = new File([blob], 'qrcode.png', { type: blob.type });
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({ files: [file], text });
+          return;
+        }
+      } catch (e) {
+        if (e.name === 'AbortError') return;
+      }
+      window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+    }
+
+    async function copyQrToClipboard(btn) {
+      const url = btn.dataset.url;
+      const qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' + encodeURIComponent(url);
+      const original = btn.innerHTML;
+      try {
+        const res = await fetch(qrUrl);
+        const blob = await res.blob();
+        if (navigator.clipboard && window.ClipboardItem) {
+          await navigator.clipboard.write([new ClipboardItem({ [blob.type]: blob })]);
+          btn.innerHTML = '✅';
+          setTimeout(() => { btn.innerHTML = original; }, 1200);
+        } else {
+          window.open(qrUrl, '_blank');
+        }
+      } catch (e) {
+        alert('Não foi possível copiar o QR Code: ' + e.message);
+      }
     }
 
     function buildWordBlob() {
