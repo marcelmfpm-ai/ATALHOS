@@ -11,14 +11,16 @@ Página única (`index.html`) com atalhos para os projetos do Marcel, pensada pa
 ## Estrutura
 
 - Título do app/página é "Atalhos" (`<title>`, `<h1>`, `apple-mobile-web-app-title`, `manifest.webmanifest`).
+- Cabeçalho (`<header>`) é uma caixa preta com texto dourado (`#d4af37`): só o nome "Atalhos" + 3 botões verticais (`.header-btn`) que agem sobre a própria URL da página (`https://marcelmfpm-ai.github.io/ATALHOS/`) — copiar link, compartilhar (link+QR) no WhatsApp, copiar QR Code. Cada botão tem ícone + texto curto explicando a ação.
 - Os atalhos são agrupados em seções (`<section>` dentro de `<main class="groups">`), cada uma com um círculo colorido (`.dot`) no título e uma borda colorida (`.group-cards` com `style="border-color:..."`, mesma cor do `.dot`) ao redor dos cards do grupo: **Aulas**, **Sistemas**, **Grades**, **Estudo**.
-- Cada atalho é um `.card`: um `.cardlink` (abre o link em nova aba) + `.actions` com dois botões que não disparam navegação — 📋 copia o link, e um botão com o logo oficial do WhatsApp (SVG inline, verde `#25D366`) que abre o WhatsApp com o título e link prontos para compartilhar.
+- Cada atalho é um `.card`: um `.cardlink` (abre o link em nova aba) + `.actions` com três botões que não disparam navegação — 📋 copia o link, ícone do WhatsApp (SVG inline, verde `#25D366`) que compartilha link+QR Code, e ícone de QR (SVG abstrato em forma de QR) que copia a imagem do QR Code para a área de transferência.
+- `shareWhatsApp(btn)` busca o QR Code do link em `api.qrserver.com`, monta um `File` e tenta `navigator.share({files, text})` (abre a folha de compartilhar do iOS, de onde se escolhe o WhatsApp); se falhar/não suportado, cai no fallback `wa.me/?text=` (só texto). `copyQrToClipboard(btn)` busca o mesmo QR e copia via `navigator.clipboard.write` com `ClipboardItem`. Ambos exigem HTTPS — não funcionam abrindo `index.html` localmente (`file://`).
 - No grupo **Sistemas**, todos os cards seguem o padrão visual "lupa sobre o que se busca": emoji principal no `.ic` + badge `.ic-badge` com 🔍 sobreposto (canto inferior direito), já que todos são sistemas de consulta.
 - Botão "📄 Gerar Word com todos os links" baixa um `.doc` (HTML disfarçado de Word) com todos os cards. Botão "Compartilhar Word no WhatsApp" (verde) usa a Web Share API (`navigator.share` com `files`) para anexar esse mesmo arquivo direto na folha de compartilhar do iOS — só funciona em HTTPS (não em `file://`) e depende do WhatsApp estar registrado como destino de compartilhamento do sistema (funciona no iPhone; no Mac o WhatsApp Desktop não se registra nesse menu, então o botão cai no fallback de download). Ambos os botões chamam `buildWordBlob()`, que lê os `.card` da DOM dinamicamente — não precisa de manutenção ao adicionar atalhos novos.
 
 ## Adicionar um novo atalho
 
-Duplicar um bloco `.card` dentro da seção correta (ou criar nova seção com `.group-header` + `.dot` + `.group-cards` com a cor correspondente), preenchendo: emoji/cor em `.ic`, título em `.t`, domínio amigável em `.u`, `href` no `.cardlink`, e `data-url`/`data-title` nos dois botões de `.actions`.
+Duplicar um bloco `.card` dentro da seção correta (ou criar nova seção com `.group-header` + `.dot` + `.group-cards` com a cor correspondente), preenchendo: emoji/cor em `.ic`, título em `.t`, domínio amigável em `.u`, `href` no `.cardlink`, e `data-url`/`data-title` nos botões de `.actions` (o botão de QR só precisa de `data-url`).
 
 ## Credenciais de login expostas nos cards
 
