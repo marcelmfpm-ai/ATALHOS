@@ -41,16 +41,23 @@
   }
   h1 { font-size: 22px; font-weight: 700; letter-spacing: -.3px; }
   .sub { color: var(--muted); font-size: 14px; margin-top: 4px; }
-  .grid { max-width: 480px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+  .groups { max-width: 480px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+  .group-header { display: flex; align-items: center; gap: 10px; margin: 0 4px 12px; }
+  .dot { width: 12px; height: 12px; border-radius: 50%; flex: 0 0 auto; }
+  .group-title { font-size: 13px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; color: var(--muted); }
+  .group-cards { display: flex; flex-direction: column; gap: 14px; }
   .card {
-    display: flex; align-items: center; gap: 16px;
+    display: flex; align-items: center; gap: 8px;
     background: var(--card); border: 1px solid var(--border);
-    border-radius: 18px; padding: 18px 18px;
-    text-decoration: none; color: var(--ink);
+    border-radius: 18px; padding: 14px 14px 14px 18px;
     box-shadow: 0 2px 6px rgba(28,36,51,.04);
-    transition: transform .12s ease, box-shadow .12s ease;
   }
-  .card:active { transform: scale(.97); box-shadow: 0 1px 3px rgba(28,36,51,.08); }
+  .cardlink {
+    flex: 1; min-width: 0;
+    display: flex; align-items: center; gap: 16px;
+    text-decoration: none; color: var(--ink);
+  }
+  .cardlink:active { opacity: .7; }
   .ic {
     flex: 0 0 48px; width: 48px; height: 48px; border-radius: 14px;
     display: flex; align-items: center; justify-content: center;
@@ -60,6 +67,20 @@
   .meta .t { font-size: 16px; font-weight: 650; line-height: 1.25; }
   .meta .u { font-size: 12.5px; color: var(--muted); margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .chev { color: #c4cad6; font-size: 20px; flex: 0 0 auto; }
+  .actions { display: flex; gap: 6px; flex: 0 0 auto; }
+  .iconbtn {
+    width: 36px; height: 36px; border-radius: 10px; border: none;
+    background: #eef1f6; color: var(--ink); font-size: 16px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+  }
+  .iconbtn:active { background: #dde2ea; }
+  .wordbtn {
+    display: block; width: 100%; max-width: 480px; margin: 18px auto 0;
+    background: var(--accent); color: #fff; border: none; border-radius: 14px;
+    padding: 14px; font-size: 15px; font-weight: 600; cursor: pointer;
+  }
+  .wordbtn:active { opacity: .85; }
   footer { text-align: center; color: var(--muted); font-size: 12px; margin-top: 30px; }
 </style>
 </head>
@@ -70,69 +91,228 @@
     <div class="sub">Marcel · acesso rápido</div>
   </header>
 
-  <main class="grid">
-    <a class="card" href="https://comforting-parfait-363a6e.netlify.app" target="_blank" rel="noopener">
-      <div class="ic" style="background:#2f4878">🗳️</div>
-      <div class="meta">
-        <div class="t">Aula M2.2 — Eleitoral</div>
-        <div class="u">comforting-parfait-363a6e.netlify.app</div>
-      </div>
-      <div class="chev">›</div>
-    </a>
+  <main class="groups">
+    <section>
+      <div class="group-header"><span class="dot" style="background:#2f4878"></span><span class="group-title">Aulas</span></div>
+      <div class="group-cards">
+        <div class="card">
+          <a class="cardlink" href="https://comforting-parfait-363a6e.netlify.app" target="_blank" rel="noopener">
+            <div class="ic" style="background:#2f4878">🗳️</div>
+            <div class="meta">
+              <div class="t">Aula M2.2 — Eleitoral</div>
+              <div class="u">comforting-parfait-363a6e.netlify.app</div>
+            </div>
+            <div class="chev">›</div>
+          </a>
+          <div class="actions">
+            <button class="iconbtn" data-url="https://comforting-parfait-363a6e.netlify.app" data-title="Aula M2.2 — Eleitoral" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
+            <button class="iconbtn" data-url="https://comforting-parfait-363a6e.netlify.app" data-title="Aula M2.2 — Eleitoral" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp">📤</button>
+          </div>
+        </div>
 
-    <a class="card" href="https://aula-m3-03-aeroporto.netlify.app" target="_blank" rel="noopener">
-      <div class="ic" style="background:#1f7a8c">✈️</div>
-      <div class="meta">
-        <div class="t">Aula M3.03 — Aeroporto</div>
-        <div class="u">aula-m3-03-aeroporto.netlify.app</div>
+        <div class="card">
+          <a class="cardlink" href="https://aula-m3-03-aeroporto.netlify.app" target="_blank" rel="noopener">
+            <div class="ic" style="background:#1f7a8c">✈️</div>
+            <div class="meta">
+              <div class="t">Aula M3.03 — Aeroporto</div>
+              <div class="u">aula-m3-03-aeroporto.netlify.app</div>
+            </div>
+            <div class="chev">›</div>
+          </a>
+          <div class="actions">
+            <button class="iconbtn" data-url="https://aula-m3-03-aeroporto.netlify.app" data-title="Aula M3.03 — Aeroporto" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
+            <button class="iconbtn" data-url="https://aula-m3-03-aeroporto.netlify.app" data-title="Aula M3.03 — Aeroporto" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp">📤</button>
+          </div>
+        </div>
       </div>
-      <div class="chev">›</div>
-    </a>
+    </section>
 
-    <a class="card" href="https://grade.simulex.com.br/consulta" target="_blank" rel="noopener">
-      <div class="ic" style="background:#3a7d44">🔎</div>
-      <div class="meta">
-        <div class="t">Grade Simulex</div>
-        <div class="u">grade.simulex.com.br/consulta</div>
-      </div>
-      <div class="chev">›</div>
-    </a>
+    <section>
+      <div class="group-header"><span class="dot" style="background:#0e7c66"></span><span class="group-title">Sistemas</span></div>
+      <div class="group-cards">
+        <div class="card">
+          <a class="cardlink" href="https://infobio-2d94d.web.app/consulta.html" target="_blank" rel="noopener">
+            <div class="ic" style="background:#0e7c66">🧬</div>
+            <div class="meta">
+              <div class="t">Infobio — Consulta</div>
+              <div class="u">infobio-2d94d.web.app/consulta.html</div>
+            </div>
+            <div class="chev">›</div>
+          </a>
+          <div class="actions">
+            <button class="iconbtn" data-url="https://infobio-2d94d.web.app/consulta.html" data-title="Infobio — Consulta" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
+            <button class="iconbtn" data-url="https://infobio-2d94d.web.app/consulta.html" data-title="Infobio — Consulta" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp">📤</button>
+          </div>
+        </div>
 
-    <a class="card" href="https://marcelmfpm-ai.github.io/GRADE_PRELIMINAR/" target="_blank" rel="noopener">
-      <div class="ic" style="background:#8a5a2b">📋</div>
-      <div class="meta">
-        <div class="t">Grade Preliminar</div>
-        <div class="u">marcelmfpm-ai.github.io/GRADE_PRELIMINAR</div>
-      </div>
-      <div class="chev">›</div>
-    </a>
+        <div class="card">
+          <a class="cardlink" href="https://marcelmfpm-ai.github.io/CONSULTA_TREINO/" target="_blank" rel="noopener">
+            <div class="ic" style="background:#b91c1c">🏋️</div>
+            <div class="meta">
+              <div class="t">Nexo Treino</div>
+              <div class="u">marcelmfpm-ai.github.io/CONSULTA_TREINO</div>
+            </div>
+            <div class="chev">›</div>
+          </a>
+          <div class="actions">
+            <button class="iconbtn" data-url="https://marcelmfpm-ai.github.io/CONSULTA_TREINO/" data-title="Nexo Treino" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
+            <button class="iconbtn" data-url="https://marcelmfpm-ai.github.io/CONSULTA_TREINO/" data-title="Nexo Treino" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp">📤</button>
+          </div>
+        </div>
 
-    <a class="card" href="https://cfp2-coordenacao-apc.web.app/" target="_blank" rel="noopener">
-      <div class="ic" style="background:#7a3b8a">🎓</div>
-      <div class="meta">
-        <div class="t">Coordenação APC — CFP2</div>
-        <div class="u">cfp2-coordenacao-apc.web.app</div>
+        <div class="card">
+          <a class="cardlink" href="https://consulta-treino-mitra.web.app/" target="_blank" rel="noopener">
+            <div class="ic" style="background:#c2410c">🎯</div>
+            <div class="meta">
+              <div class="t">Mitra — Consulta Treino</div>
+              <div class="u">consulta-treino-mitra.web.app</div>
+            </div>
+            <div class="chev">›</div>
+          </a>
+          <div class="actions">
+            <button class="iconbtn" data-url="https://consulta-treino-mitra.web.app/" data-title="Mitra — Consulta Treino" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
+            <button class="iconbtn" data-url="https://consulta-treino-mitra.web.app/" data-title="Mitra — Consulta Treino" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp">📤</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <a class="cardlink" href="https://marcelmfpm-ai.github.io/CONSULTA_TREINO_DPF/" target="_blank" rel="noopener">
+            <div class="ic" style="background:#0f766e">🛡️</div>
+            <div class="meta">
+              <div class="t">Nexo Treino — DPF</div>
+              <div class="u">marcelmfpm-ai.github.io/CONSULTA_TREINO_DPF</div>
+            </div>
+            <div class="chev">›</div>
+          </a>
+          <div class="actions">
+            <button class="iconbtn" data-url="https://marcelmfpm-ai.github.io/CONSULTA_TREINO_DPF/" data-title="Nexo Treino — DPF" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
+            <button class="iconbtn" data-url="https://marcelmfpm-ai.github.io/CONSULTA_TREINO_DPF/" data-title="Nexo Treino — DPF" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp">📤</button>
+          </div>
+        </div>
       </div>
-      <div class="chev">›</div>
-    </a>
-    <a class="card" href="https://infobio-2d94d.web.app/consulta.html" target="_blank" rel="noopener">
-      <div class="ic" style="background:#0e7c66">🧬</div>
-      <div class="meta">
-        <div class="t">Infobio — Consulta</div>
-        <div class="u">infobio-2d94d.web.app/consulta.html</div>
+    </section>
+
+    <section>
+      <div class="group-header"><span class="dot" style="background:#8a5a2b"></span><span class="group-title">Grades</span></div>
+      <div class="group-cards">
+        <div class="card">
+          <a class="cardlink" href="https://cfp2-coordenacao-apc.web.app/" target="_blank" rel="noopener">
+            <div class="ic" style="background:#7a3b8a">🎓</div>
+            <div class="meta">
+              <div class="t">Coordenação APC — CFP2</div>
+              <div class="u">cfp2-coordenacao-apc.web.app</div>
+            </div>
+            <div class="chev">›</div>
+          </a>
+          <div class="actions">
+            <button class="iconbtn" data-url="https://cfp2-coordenacao-apc.web.app/" data-title="Coordenação APC — CFP2" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
+            <button class="iconbtn" data-url="https://cfp2-coordenacao-apc.web.app/" data-title="Coordenação APC — CFP2" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp">📤</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <a class="cardlink" href="https://grade.simulex.com.br/consulta" target="_blank" rel="noopener">
+            <div class="ic" style="background:#3a7d44">🔎</div>
+            <div class="meta">
+              <div class="t">Grade Simulex</div>
+              <div class="u">grade.simulex.com.br/consulta</div>
+            </div>
+            <div class="chev">›</div>
+          </a>
+          <div class="actions">
+            <button class="iconbtn" data-url="https://grade.simulex.com.br/consulta" data-title="Grade Simulex" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
+            <button class="iconbtn" data-url="https://grade.simulex.com.br/consulta" data-title="Grade Simulex" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp">📤</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <a class="cardlink" href="https://marcelmfpm-ai.github.io/GRADE_PRELIMINAR/" target="_blank" rel="noopener">
+            <div class="ic" style="background:#8a5a2b">📋</div>
+            <div class="meta">
+              <div class="t">Grade Preliminar</div>
+              <div class="u">marcelmfpm-ai.github.io/GRADE_PRELIMINAR</div>
+            </div>
+            <div class="chev">›</div>
+          </a>
+          <div class="actions">
+            <button class="iconbtn" data-url="https://marcelmfpm-ai.github.io/GRADE_PRELIMINAR/" data-title="Grade Preliminar" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
+            <button class="iconbtn" data-url="https://marcelmfpm-ai.github.io/GRADE_PRELIMINAR/" data-title="Grade Preliminar" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp">📤</button>
+          </div>
+        </div>
       </div>
-      <div class="chev">›</div>
-    </a>
-    <a class="card" href="https://consulta-treino-mitra.web.app/" target="_blank" rel="noopener">
-      <div class="ic" style="background:#c2410c">🎯</div>
-      <div class="meta">
-        <div class="t">Mitra — Consulta Treino</div>
-        <div class="u">consulta-treino-mitra.web.app</div>
+    </section>
+
+    <section>
+      <div class="group-header"><span class="dot" style="background:#4338ca"></span><span class="group-title">Estudo</span></div>
+      <div class="group-cards">
+        <div class="card">
+          <a class="cardlink" href="https://cfp2026anp.github.io/PAINEL-DE-MATERIAIS-APC/" target="_blank" rel="noopener">
+            <div class="ic" style="background:#4338ca">📚</div>
+            <div class="meta">
+              <div class="t">Estudo Material do Professor</div>
+              <div class="u">cfp2026anp.github.io/PAINEL-DE-MATERIAIS-APC</div>
+            </div>
+            <div class="chev">›</div>
+          </a>
+          <div class="actions">
+            <button class="iconbtn" data-url="https://cfp2026anp.github.io/PAINEL-DE-MATERIAIS-APC/" data-title="Estudo Material do Professor" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
+            <button class="iconbtn" data-url="https://cfp2026anp.github.io/PAINEL-DE-MATERIAIS-APC/" data-title="Estudo Material do Professor" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp">📤</button>
+          </div>
+        </div>
       </div>
-      <div class="chev">›</div>
-    </a>
+    </section>
   </main>
 
+  <button class="wordbtn" onclick="downloadWordDoc()">📄 Gerar Word com todos os links</button>
+
   <footer>Toque em um cartão para abrir · adicione mais quando quiser</footer>
+
+  <script>
+    function copyLink(btn) {
+      const url = btn.dataset.url;
+      const original = btn.textContent;
+      const flash = () => { btn.textContent = '✅'; setTimeout(() => { btn.textContent = original; }, 1200); };
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(url).then(flash);
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = url;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        flash();
+      }
+    }
+
+    function shareWhatsApp(btn) {
+      const url = btn.dataset.url;
+      const title = btn.dataset.title;
+      const text = encodeURIComponent(title + ': ' + url);
+      window.open('https://wa.me/?text=' + text, '_blank');
+    }
+
+    function downloadWordDoc() {
+      let rows = '';
+      document.querySelectorAll('.card').forEach(card => {
+        const title = card.querySelector('.t').textContent;
+        const url = card.querySelector('.cardlink').getAttribute('href');
+        rows += `<p><b>${title}</b><br><a href="${url}">${url}</a></p>`;
+      });
+      const html = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head><meta charset='utf-8'><title>Meus Atalhos</title></head>
+<body><h1>Meus Atalhos</h1>${rows}</body></html>`;
+      const blob = new Blob(['﻿', html], { type: 'application/msword' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'meus-atalhos.doc';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(link.href);
+    }
+  </script>
 </body>
 </html>
