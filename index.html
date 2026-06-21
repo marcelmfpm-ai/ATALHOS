@@ -355,14 +355,18 @@
     async function shareWordDoc() {
       const blob = buildWordBlob();
       const file = new File([blob], 'meus-atalhos.doc', { type: 'application/msword' });
-      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      const canShareFiles = navigator.canShare && navigator.canShare({ files: [file] });
+      if (canShareFiles) {
         try {
           await navigator.share({ files: [file], title: 'Meus Atalhos' });
         } catch (e) {
-          // usuário cancelou o compartilhamento
+          if (e.name !== 'AbortError') {
+            alert('Não foi possível compartilhar o arquivo (' + e.name + '): ' + e.message + '\nO documento será baixado — envie manualmente.');
+            downloadWordDoc();
+          }
         }
       } else {
-        alert('Seu navegador não permite compartilhar o arquivo direto pelo WhatsApp. O documento será baixado — envie manualmente.');
+        alert('Este navegador não permite compartilhar o arquivo direto pelo WhatsApp (canShare: ' + !!navigator.canShare + '). O documento será baixado — envie manualmente.');
         downloadWordDoc();
       }
     }
