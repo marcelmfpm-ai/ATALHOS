@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="application-name" content="Meus Projetos">
+<meta name="application-name" content="Atalhos">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Meus Projetos">
+<meta name="apple-mobile-web-app-title" content="Atalhos">
 <meta name="theme-color" content="#f4f6fa">
 <link rel="manifest" href="manifest.webmanifest">
-<title>Meus Projetos</title>
+<title>Atalhos</title>
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" href="apple-touch-icon.png" type="image/png">
 <style>
@@ -45,7 +45,10 @@
   .group-header { display: flex; align-items: center; gap: 10px; margin: 0 4px 12px; }
   .dot { width: 12px; height: 12px; border-radius: 50%; flex: 0 0 auto; }
   .group-title { font-size: 13px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; color: var(--muted); }
-  .group-cards { display: flex; flex-direction: column; gap: 14px; }
+  .group-cards {
+    display: flex; flex-direction: column; gap: 14px;
+    border: 2px solid; border-radius: 24px; padding: 14px;
+  }
   .card {
     display: flex; align-items: center; gap: 8px;
     background: var(--card); border: 1px solid var(--border);
@@ -59,9 +62,17 @@
   }
   .cardlink:active { opacity: .7; }
   .ic {
+    position: relative;
     flex: 0 0 48px; width: 48px; height: 48px; border-radius: 14px;
     display: flex; align-items: center; justify-content: center;
     font-size: 24px; color: #fff;
+  }
+  .ic-badge {
+    position: absolute; bottom: -4px; right: -4px;
+    width: 20px; height: 20px; border-radius: 50%;
+    background: #fff; border: 2px solid var(--card);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
   }
   .meta { flex: 1; min-width: 0; }
   .meta .t { font-size: 16px; font-weight: 650; line-height: 1.25; }
@@ -75,26 +86,28 @@
     cursor: pointer;
   }
   .iconbtn:active { background: #dde2ea; }
+  .wordrow { max-width: 480px; margin: 18px auto 0; display: flex; flex-direction: column; gap: 10px; }
   .wordbtn {
-    display: block; width: 100%; max-width: 480px; margin: 18px auto 0;
-    background: var(--accent); color: #fff; border: none; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; background: var(--accent); color: #fff; border: none; border-radius: 14px;
     padding: 14px; font-size: 15px; font-weight: 600; cursor: pointer;
   }
   .wordbtn:active { opacity: .85; }
+  .wordbtn-wa { background: #25D366; }
   footer { text-align: center; color: var(--muted); font-size: 12px; margin-top: 30px; }
 </style>
 </head>
 <body>
   <header>
     <div class="logo">M</div>
-    <h1>Meus Projetos</h1>
+    <h1>Atalhos</h1>
     <div class="sub">Marcel · acesso rápido</div>
   </header>
 
   <main class="groups">
     <section>
       <div class="group-header"><span class="dot" style="background:#2f4878"></span><span class="group-title">Aulas</span></div>
-      <div class="group-cards">
+      <div class="group-cards" style="border-color:#2f4878">
         <div class="card">
           <a class="cardlink" href="https://comforting-parfait-363a6e.netlify.app" target="_blank" rel="noopener">
             <div class="ic" style="background:#2f4878">🗳️</div>
@@ -106,7 +119,7 @@
           </a>
           <div class="actions">
             <button class="iconbtn" data-url="https://comforting-parfait-363a6e.netlify.app" data-title="Aula M2.2 — Eleitoral" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
-            <button class="iconbtn" data-url="https://comforting-parfait-363a6e.netlify.app" data-title="Aula M2.2 — Eleitoral" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp">📤</button>
+            <button class="iconbtn" data-url="https://comforting-parfait-363a6e.netlify.app" data-title="Aula M2.2 — Eleitoral" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp"><svg viewBox="0 0 448 512" width="16" height="16" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 224.1 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 110.8L0 480l117.7-30.9c32 17.5 68.1 26.7 105.7 26.7h.1c122.4 0 224.1-99.6 224.1-222 0-59.1-25.9-115.8-67.7-156.7zM224.1 438.5h-.1c-32.7 0-64.6-8.8-92.5-25.5l-6.6-3.9-69.8 18.3 18.6-68-4.3-7c-19.5-31-29.8-66.8-29.8-104 0-101.6 82.7-184.3 184.5-184.3 49.3 0 95.6 19.2 130.4 54 34.8 34.8 56.2 81.1 56.1 130.4 0 101.7-84.9 184.3-186.5 184.3zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.5-14.3 18-17.6 21.7-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.6-9.7-1.5-2.8-12.9-31-17.7-42.4-4.7-11.1-9.5-9.6-13-9.8-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.5 19-19.5 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 38 58 92.1 79 45.5 17.5 54.7 14 64.6 12.9 9.9-1.1 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.4-2.3-5.1-3.7-10.6-6.4z"/></svg></button>
           </div>
         </div>
 
@@ -121,7 +134,7 @@
           </a>
           <div class="actions">
             <button class="iconbtn" data-url="https://aula-m3-03-aeroporto.netlify.app" data-title="Aula M3.03 — Aeroporto" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
-            <button class="iconbtn" data-url="https://aula-m3-03-aeroporto.netlify.app" data-title="Aula M3.03 — Aeroporto" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp">📤</button>
+            <button class="iconbtn" data-url="https://aula-m3-03-aeroporto.netlify.app" data-title="Aula M3.03 — Aeroporto" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp"><svg viewBox="0 0 448 512" width="16" height="16" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 224.1 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 110.8L0 480l117.7-30.9c32 17.5 68.1 26.7 105.7 26.7h.1c122.4 0 224.1-99.6 224.1-222 0-59.1-25.9-115.8-67.7-156.7zM224.1 438.5h-.1c-32.7 0-64.6-8.8-92.5-25.5l-6.6-3.9-69.8 18.3 18.6-68-4.3-7c-19.5-31-29.8-66.8-29.8-104 0-101.6 82.7-184.3 184.5-184.3 49.3 0 95.6 19.2 130.4 54 34.8 34.8 56.2 81.1 56.1 130.4 0 101.7-84.9 184.3-186.5 184.3zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.5-14.3 18-17.6 21.7-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.6-9.7-1.5-2.8-12.9-31-17.7-42.4-4.7-11.1-9.5-9.6-13-9.8-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.5 19-19.5 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 38 58 92.1 79 45.5 17.5 54.7 14 64.6 12.9 9.9-1.1 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.4-2.3-5.1-3.7-10.6-6.4z"/></svg></button>
           </div>
         </div>
       </div>
@@ -129,10 +142,10 @@
 
     <section>
       <div class="group-header"><span class="dot" style="background:#0e7c66"></span><span class="group-title">Sistemas</span></div>
-      <div class="group-cards">
+      <div class="group-cards" style="border-color:#0e7c66">
         <div class="card">
           <a class="cardlink" href="https://infobio-2d94d.web.app/consulta.html" target="_blank" rel="noopener">
-            <div class="ic" style="background:#0e7c66">🧬</div>
+            <div class="ic" style="background:#0e7c66">🫆<span class="ic-badge">🔍</span></div>
             <div class="meta">
               <div class="t">Infobio — Consulta</div>
               <div class="u">infobio-2d94d.web.app/consulta.html</div>
@@ -141,28 +154,28 @@
           </a>
           <div class="actions">
             <button class="iconbtn" data-url="https://infobio-2d94d.web.app/consulta.html" data-title="Infobio — Consulta" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
-            <button class="iconbtn" data-url="https://infobio-2d94d.web.app/consulta.html" data-title="Infobio — Consulta" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp">📤</button>
+            <button class="iconbtn" data-url="https://infobio-2d94d.web.app/consulta.html" data-title="Infobio — Consulta" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp"><svg viewBox="0 0 448 512" width="16" height="16" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 224.1 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 110.8L0 480l117.7-30.9c32 17.5 68.1 26.7 105.7 26.7h.1c122.4 0 224.1-99.6 224.1-222 0-59.1-25.9-115.8-67.7-156.7zM224.1 438.5h-.1c-32.7 0-64.6-8.8-92.5-25.5l-6.6-3.9-69.8 18.3 18.6-68-4.3-7c-19.5-31-29.8-66.8-29.8-104 0-101.6 82.7-184.3 184.5-184.3 49.3 0 95.6 19.2 130.4 54 34.8 34.8 56.2 81.1 56.1 130.4 0 101.7-84.9 184.3-186.5 184.3zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.5-14.3 18-17.6 21.7-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.6-9.7-1.5-2.8-12.9-31-17.7-42.4-4.7-11.1-9.5-9.6-13-9.8-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.5 19-19.5 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 38 58 92.1 79 45.5 17.5 54.7 14 64.6 12.9 9.9-1.1 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.4-2.3-5.1-3.7-10.6-6.4z"/></svg></button>
           </div>
         </div>
 
         <div class="card">
           <a class="cardlink" href="https://marcelmfpm-ai.github.io/CONSULTA_TREINO/" target="_blank" rel="noopener">
-            <div class="ic" style="background:#b91c1c">🏋️</div>
+            <div class="ic" style="background:#b91c1c">💻<span class="ic-badge">🔍</span></div>
             <div class="meta">
-              <div class="t">Nexo Treino</div>
+              <div class="t">Nexo Treino - EPF</div>
               <div class="u">marcelmfpm-ai.github.io/CONSULTA_TREINO</div>
             </div>
             <div class="chev">›</div>
           </a>
           <div class="actions">
-            <button class="iconbtn" data-url="https://marcelmfpm-ai.github.io/CONSULTA_TREINO/" data-title="Nexo Treino" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
-            <button class="iconbtn" data-url="https://marcelmfpm-ai.github.io/CONSULTA_TREINO/" data-title="Nexo Treino" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp">📤</button>
+            <button class="iconbtn" data-url="https://marcelmfpm-ai.github.io/CONSULTA_TREINO/" data-title="Nexo Treino - EPF" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
+            <button class="iconbtn" data-url="https://marcelmfpm-ai.github.io/CONSULTA_TREINO/" data-title="Nexo Treino - EPF" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp"><svg viewBox="0 0 448 512" width="16" height="16" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 224.1 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 110.8L0 480l117.7-30.9c32 17.5 68.1 26.7 105.7 26.7h.1c122.4 0 224.1-99.6 224.1-222 0-59.1-25.9-115.8-67.7-156.7zM224.1 438.5h-.1c-32.7 0-64.6-8.8-92.5-25.5l-6.6-3.9-69.8 18.3 18.6-68-4.3-7c-19.5-31-29.8-66.8-29.8-104 0-101.6 82.7-184.3 184.5-184.3 49.3 0 95.6 19.2 130.4 54 34.8 34.8 56.2 81.1 56.1 130.4 0 101.7-84.9 184.3-186.5 184.3zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.5-14.3 18-17.6 21.7-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.6-9.7-1.5-2.8-12.9-31-17.7-42.4-4.7-11.1-9.5-9.6-13-9.8-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.5 19-19.5 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 38 58 92.1 79 45.5 17.5 54.7 14 64.6 12.9 9.9-1.1 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.4-2.3-5.1-3.7-10.6-6.4z"/></svg></button>
           </div>
         </div>
 
         <div class="card">
           <a class="cardlink" href="https://consulta-treino-mitra.web.app/" target="_blank" rel="noopener">
-            <div class="ic" style="background:#c2410c">🎯</div>
+            <div class="ic" style="background:#c2410c">🖼️<span class="ic-badge">🔍</span></div>
             <div class="meta">
               <div class="t">Mitra — Consulta Treino</div>
               <div class="u">consulta-treino-mitra.web.app</div>
@@ -171,13 +184,13 @@
           </a>
           <div class="actions">
             <button class="iconbtn" data-url="https://consulta-treino-mitra.web.app/" data-title="Mitra — Consulta Treino" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
-            <button class="iconbtn" data-url="https://consulta-treino-mitra.web.app/" data-title="Mitra — Consulta Treino" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp">📤</button>
+            <button class="iconbtn" data-url="https://consulta-treino-mitra.web.app/" data-title="Mitra — Consulta Treino" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp"><svg viewBox="0 0 448 512" width="16" height="16" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 224.1 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 110.8L0 480l117.7-30.9c32 17.5 68.1 26.7 105.7 26.7h.1c122.4 0 224.1-99.6 224.1-222 0-59.1-25.9-115.8-67.7-156.7zM224.1 438.5h-.1c-32.7 0-64.6-8.8-92.5-25.5l-6.6-3.9-69.8 18.3 18.6-68-4.3-7c-19.5-31-29.8-66.8-29.8-104 0-101.6 82.7-184.3 184.5-184.3 49.3 0 95.6 19.2 130.4 54 34.8 34.8 56.2 81.1 56.1 130.4 0 101.7-84.9 184.3-186.5 184.3zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.5-14.3 18-17.6 21.7-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.6-9.7-1.5-2.8-12.9-31-17.7-42.4-4.7-11.1-9.5-9.6-13-9.8-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.5 19-19.5 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 38 58 92.1 79 45.5 17.5 54.7 14 64.6 12.9 9.9-1.1 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.4-2.3-5.1-3.7-10.6-6.4z"/></svg></button>
           </div>
         </div>
 
         <div class="card">
           <a class="cardlink" href="https://marcelmfpm-ai.github.io/CONSULTA_TREINO_DPF/" target="_blank" rel="noopener">
-            <div class="ic" style="background:#0f766e">🛡️</div>
+            <div class="ic" style="background:#0f766e">💻<span class="ic-badge">🔍</span></div>
             <div class="meta">
               <div class="t">Nexo Treino — DPF</div>
               <div class="u">marcelmfpm-ai.github.io/CONSULTA_TREINO_DPF</div>
@@ -186,7 +199,7 @@
           </a>
           <div class="actions">
             <button class="iconbtn" data-url="https://marcelmfpm-ai.github.io/CONSULTA_TREINO_DPF/" data-title="Nexo Treino — DPF" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
-            <button class="iconbtn" data-url="https://marcelmfpm-ai.github.io/CONSULTA_TREINO_DPF/" data-title="Nexo Treino — DPF" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp">📤</button>
+            <button class="iconbtn" data-url="https://marcelmfpm-ai.github.io/CONSULTA_TREINO_DPF/" data-title="Nexo Treino — DPF" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp"><svg viewBox="0 0 448 512" width="16" height="16" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 224.1 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 110.8L0 480l117.7-30.9c32 17.5 68.1 26.7 105.7 26.7h.1c122.4 0 224.1-99.6 224.1-222 0-59.1-25.9-115.8-67.7-156.7zM224.1 438.5h-.1c-32.7 0-64.6-8.8-92.5-25.5l-6.6-3.9-69.8 18.3 18.6-68-4.3-7c-19.5-31-29.8-66.8-29.8-104 0-101.6 82.7-184.3 184.5-184.3 49.3 0 95.6 19.2 130.4 54 34.8 34.8 56.2 81.1 56.1 130.4 0 101.7-84.9 184.3-186.5 184.3zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.5-14.3 18-17.6 21.7-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.6-9.7-1.5-2.8-12.9-31-17.7-42.4-4.7-11.1-9.5-9.6-13-9.8-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.5 19-19.5 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 38 58 92.1 79 45.5 17.5 54.7 14 64.6 12.9 9.9-1.1 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.4-2.3-5.1-3.7-10.6-6.4z"/></svg></button>
           </div>
         </div>
       </div>
@@ -194,7 +207,7 @@
 
     <section>
       <div class="group-header"><span class="dot" style="background:#8a5a2b"></span><span class="group-title">Grades</span></div>
-      <div class="group-cards">
+      <div class="group-cards" style="border-color:#8a5a2b">
         <div class="card">
           <a class="cardlink" href="https://cfp2-coordenacao-apc.web.app/" target="_blank" rel="noopener">
             <div class="ic" style="background:#7a3b8a">🎓</div>
@@ -206,13 +219,13 @@
           </a>
           <div class="actions">
             <button class="iconbtn" data-url="https://cfp2-coordenacao-apc.web.app/" data-title="Coordenação APC — CFP2" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
-            <button class="iconbtn" data-url="https://cfp2-coordenacao-apc.web.app/" data-title="Coordenação APC — CFP2" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp">📤</button>
+            <button class="iconbtn" data-url="https://cfp2-coordenacao-apc.web.app/" data-title="Coordenação APC — CFP2" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp"><svg viewBox="0 0 448 512" width="16" height="16" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 224.1 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 110.8L0 480l117.7-30.9c32 17.5 68.1 26.7 105.7 26.7h.1c122.4 0 224.1-99.6 224.1-222 0-59.1-25.9-115.8-67.7-156.7zM224.1 438.5h-.1c-32.7 0-64.6-8.8-92.5-25.5l-6.6-3.9-69.8 18.3 18.6-68-4.3-7c-19.5-31-29.8-66.8-29.8-104 0-101.6 82.7-184.3 184.5-184.3 49.3 0 95.6 19.2 130.4 54 34.8 34.8 56.2 81.1 56.1 130.4 0 101.7-84.9 184.3-186.5 184.3zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.5-14.3 18-17.6 21.7-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.6-9.7-1.5-2.8-12.9-31-17.7-42.4-4.7-11.1-9.5-9.6-13-9.8-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.5 19-19.5 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 38 58 92.1 79 45.5 17.5 54.7 14 64.6 12.9 9.9-1.1 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.4-2.3-5.1-3.7-10.6-6.4z"/></svg></button>
           </div>
         </div>
 
         <div class="card">
           <a class="cardlink" href="https://grade.simulex.com.br/consulta" target="_blank" rel="noopener">
-            <div class="ic" style="background:#3a7d44">🔎</div>
+            <div class="ic" style="background:#3a7d44">📅</div>
             <div class="meta">
               <div class="t">Grade Simulex</div>
               <div class="u">grade.simulex.com.br/consulta</div>
@@ -221,13 +234,13 @@
           </a>
           <div class="actions">
             <button class="iconbtn" data-url="https://grade.simulex.com.br/consulta" data-title="Grade Simulex" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
-            <button class="iconbtn" data-url="https://grade.simulex.com.br/consulta" data-title="Grade Simulex" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp">📤</button>
+            <button class="iconbtn" data-url="https://grade.simulex.com.br/consulta" data-title="Grade Simulex" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp"><svg viewBox="0 0 448 512" width="16" height="16" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 224.1 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 110.8L0 480l117.7-30.9c32 17.5 68.1 26.7 105.7 26.7h.1c122.4 0 224.1-99.6 224.1-222 0-59.1-25.9-115.8-67.7-156.7zM224.1 438.5h-.1c-32.7 0-64.6-8.8-92.5-25.5l-6.6-3.9-69.8 18.3 18.6-68-4.3-7c-19.5-31-29.8-66.8-29.8-104 0-101.6 82.7-184.3 184.5-184.3 49.3 0 95.6 19.2 130.4 54 34.8 34.8 56.2 81.1 56.1 130.4 0 101.7-84.9 184.3-186.5 184.3zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.5-14.3 18-17.6 21.7-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.6-9.7-1.5-2.8-12.9-31-17.7-42.4-4.7-11.1-9.5-9.6-13-9.8-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.5 19-19.5 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 38 58 92.1 79 45.5 17.5 54.7 14 64.6 12.9 9.9-1.1 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.4-2.3-5.1-3.7-10.6-6.4z"/></svg></button>
           </div>
         </div>
 
         <div class="card">
           <a class="cardlink" href="https://marcelmfpm-ai.github.io/GRADE_PRELIMINAR/" target="_blank" rel="noopener">
-            <div class="ic" style="background:#8a5a2b">📋</div>
+            <div class="ic" style="background:#1d4ed8">📅</div>
             <div class="meta">
               <div class="t">Grade Preliminar</div>
               <div class="u">marcelmfpm-ai.github.io/GRADE_PRELIMINAR</div>
@@ -236,7 +249,7 @@
           </a>
           <div class="actions">
             <button class="iconbtn" data-url="https://marcelmfpm-ai.github.io/GRADE_PRELIMINAR/" data-title="Grade Preliminar" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
-            <button class="iconbtn" data-url="https://marcelmfpm-ai.github.io/GRADE_PRELIMINAR/" data-title="Grade Preliminar" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp">📤</button>
+            <button class="iconbtn" data-url="https://marcelmfpm-ai.github.io/GRADE_PRELIMINAR/" data-title="Grade Preliminar" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp"><svg viewBox="0 0 448 512" width="16" height="16" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 224.1 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 110.8L0 480l117.7-30.9c32 17.5 68.1 26.7 105.7 26.7h.1c122.4 0 224.1-99.6 224.1-222 0-59.1-25.9-115.8-67.7-156.7zM224.1 438.5h-.1c-32.7 0-64.6-8.8-92.5-25.5l-6.6-3.9-69.8 18.3 18.6-68-4.3-7c-19.5-31-29.8-66.8-29.8-104 0-101.6 82.7-184.3 184.5-184.3 49.3 0 95.6 19.2 130.4 54 34.8 34.8 56.2 81.1 56.1 130.4 0 101.7-84.9 184.3-186.5 184.3zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.5-14.3 18-17.6 21.7-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.6-9.7-1.5-2.8-12.9-31-17.7-42.4-4.7-11.1-9.5-9.6-13-9.8-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.5 19-19.5 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 38 58 92.1 79 45.5 17.5 54.7 14 64.6 12.9 9.9-1.1 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.4-2.3-5.1-3.7-10.6-6.4z"/></svg></button>
           </div>
         </div>
       </div>
@@ -244,7 +257,7 @@
 
     <section>
       <div class="group-header"><span class="dot" style="background:#4338ca"></span><span class="group-title">Estudo</span></div>
-      <div class="group-cards">
+      <div class="group-cards" style="border-color:#4338ca">
         <div class="card">
           <a class="cardlink" href="https://cfp2026anp.github.io/PAINEL-DE-MATERIAIS-APC/" target="_blank" rel="noopener">
             <div class="ic" style="background:#4338ca">📚</div>
@@ -256,14 +269,17 @@
           </a>
           <div class="actions">
             <button class="iconbtn" data-url="https://cfp2026anp.github.io/PAINEL-DE-MATERIAIS-APC/" data-title="Estudo Material do Professor" onclick="copyLink(this)" aria-label="Copiar link">📋</button>
-            <button class="iconbtn" data-url="https://cfp2026anp.github.io/PAINEL-DE-MATERIAIS-APC/" data-title="Estudo Material do Professor" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp">📤</button>
+            <button class="iconbtn" data-url="https://cfp2026anp.github.io/PAINEL-DE-MATERIAIS-APC/" data-title="Estudo Material do Professor" onclick="shareWhatsApp(this)" aria-label="Compartilhar no WhatsApp"><svg viewBox="0 0 448 512" width="16" height="16" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 224.1 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 110.8L0 480l117.7-30.9c32 17.5 68.1 26.7 105.7 26.7h.1c122.4 0 224.1-99.6 224.1-222 0-59.1-25.9-115.8-67.7-156.7zM224.1 438.5h-.1c-32.7 0-64.6-8.8-92.5-25.5l-6.6-3.9-69.8 18.3 18.6-68-4.3-7c-19.5-31-29.8-66.8-29.8-104 0-101.6 82.7-184.3 184.5-184.3 49.3 0 95.6 19.2 130.4 54 34.8 34.8 56.2 81.1 56.1 130.4 0 101.7-84.9 184.3-186.5 184.3zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.5-14.3 18-17.6 21.7-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.6-9.7-1.5-2.8-12.9-31-17.7-42.4-4.7-11.1-9.5-9.6-13-9.8-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.5 19-19.5 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 38 58 92.1 79 45.5 17.5 54.7 14 64.6 12.9 9.9-1.1 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.4-2.3-5.1-3.7-10.6-6.4z"/></svg></button>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <button class="wordbtn" onclick="downloadWordDoc()">📄 Gerar Word com todos os links</button>
+  <div class="wordrow">
+    <button class="wordbtn" onclick="downloadWordDoc()">📄 Gerar Word com todos os links</button>
+    <button class="wordbtn wordbtn-wa" onclick="shareWordDoc()"><svg viewBox="0 0 448 512" width="16" height="16" fill="#fff"><path d="M380.9 97.1C339 55.1 283.2 32 224.1 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 110.8L0 480l117.7-30.9c32 17.5 68.1 26.7 105.7 26.7h.1c122.4 0 224.1-99.6 224.1-222 0-59.1-25.9-115.8-67.7-156.7zM224.1 438.5h-.1c-32.7 0-64.6-8.8-92.5-25.5l-6.6-3.9-69.8 18.3 18.6-68-4.3-7c-19.5-31-29.8-66.8-29.8-104 0-101.6 82.7-184.3 184.5-184.3 49.3 0 95.6 19.2 130.4 54 34.8 34.8 56.2 81.1 56.1 130.4 0 101.7-84.9 184.3-186.5 184.3zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.5-14.3 18-17.6 21.7-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.6-9.7-1.5-2.8-12.9-31-17.7-42.4-4.7-11.1-9.5-9.6-13-9.8-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.5 19-19.5 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 38 58 92.1 79 45.5 17.5 54.7 14 64.6 12.9 9.9-1.1 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.4-2.3-5.1-3.7-10.6-6.4z"/></svg> Compartilhar Word no WhatsApp</button>
+  </div>
 
   <footer>Toque em um cartão para abrir · adicione mais quando quiser</footer>
 
@@ -294,17 +310,22 @@
       window.open('https://wa.me/?text=' + text, '_blank');
     }
 
-    function downloadWordDoc() {
+    function buildWordBlob() {
       let rows = '';
       document.querySelectorAll('.card').forEach(card => {
         const title = card.querySelector('.t').textContent;
         const url = card.querySelector('.cardlink').getAttribute('href');
-        rows += `<p><b>${title}</b><br><a href="${url}">${url}</a></p>`;
+        const wa = 'https://wa.me/?text=' + encodeURIComponent(title + ': ' + url);
+        rows += `<p><b>${title}</b><br><a href="${url}">${url}</a><br><a href="${wa}">📤 Compartilhar via WhatsApp</a></p>`;
       });
       const html = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
 <head><meta charset='utf-8'><title>Meus Atalhos</title></head>
 <body><h1>Meus Atalhos</h1>${rows}</body></html>`;
-      const blob = new Blob(['﻿', html], { type: 'application/msword' });
+      return new Blob(['﻿', html], { type: 'application/msword' });
+    }
+
+    function downloadWordDoc() {
+      const blob = buildWordBlob();
       const link = document.createElement('a');
       link.href = URL.createObjectURL(blob);
       link.download = 'meus-atalhos.doc';
@@ -312,6 +333,21 @@
       link.click();
       document.body.removeChild(link);
       URL.revokeObjectURL(link.href);
+    }
+
+    async function shareWordDoc() {
+      const blob = buildWordBlob();
+      const file = new File([blob], 'meus-atalhos.doc', { type: 'application/msword' });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        try {
+          await navigator.share({ files: [file], title: 'Meus Atalhos' });
+        } catch (e) {
+          // usuário cancelou o compartilhamento
+        }
+      } else {
+        alert('Seu navegador não permite compartilhar o arquivo direto pelo WhatsApp. O documento será baixado — envie manualmente.');
+        downloadWordDoc();
+      }
     }
   </script>
 </body>

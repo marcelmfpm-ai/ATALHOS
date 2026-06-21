@@ -1,6 +1,6 @@
 {
-  "name": "Meus Projetos",
-  "short_name": "Projetos",
+  "name": "Atalhos",
+  "short_name": "Atalhos",
   "description": "Acesso rápido aos meus projetos e links úteis.",
   "start_url": ".",
   "display": "standalone",
